@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/adverts-car-rental/static/css/main.7acaea2f.css",
+    "main.js": "/adverts-car-rental/static/js/main.07d3183d.js",
+    "index.html": "/adverts-car-rental/index.html",
+    "main.7acaea2f.css.map": "/adverts-car-rental/static/css/main.7acaea2f.css.map",
+    "main.07d3183d.js.map": "/adverts-car-rental/static/js/main.07d3183d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7acaea2f.css",
+    "static/js/main.07d3183d.js"
+  ]
+}
