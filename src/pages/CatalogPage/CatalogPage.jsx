@@ -39,7 +39,7 @@ export default function CatalogPage() {
   return (
     <>
       <ul className={css.cardList}>{adverts && adverts.map(advert => <AdvertCard advert={advert} key={advert.id} />)}</ul>
-      <LoadMore onClick={onLoadMore} />
+      {page < 4 && <LoadMore onClick={onLoadMore} />}
     </>
   );
 }
