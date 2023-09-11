@@ -56,6 +56,7 @@ export default function CatalogPage() {
 
   return (
     <>
+    <h1 className="visually-hidden">Car Rantal Catalog</h1>
       <ul className={css.cardList}>
         <Suspense fallback={<div>Loading......</div>}>
           {adverts && adverts.map(advert => <AdvertCard advert={advert} key={advert.id} openModal={openModal} />)}
