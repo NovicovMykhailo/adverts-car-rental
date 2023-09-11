@@ -1,28 +1,22 @@
-import { Suspense } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { useState } from 'react';
+import { Outlet } from 'react-router-dom';
 import css from './SharedLayout.module.css';
+import menuIcon from '../../assets/chevron-down.svg';
+import NavMenu from './NavMenu';
 
 const SharedLayout = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  
   return (
     <section className={css.section}>
-      <aside className={css.sideBar}>
-        <nav className={css.navBar}>
-          <Link to={'/'} className="button-primary">
-            Home
-          </Link>
-          <Link to={'/catalog'} className="button-primary">
-            Catalog
-          </Link>
-          <Link to={'/favorites'} className="button-primary">
-            Favorites
-          </Link>
-        </nav>
-      </aside>
+      <NavMenu isActive={isMenuOpen} />
+      <div onClick={() => setIsMenuOpen(prev => !prev)}>
+        <img src={menuIcon} alt="Menu Icon" className={`${css.openMenuBtn} ${!isMenuOpen && css.clzdMenu}`} />
+      </div>
 
       <main className={css.main}>
-        <Suspense fallback={<div>Loading......</div>}>
-          <Outlet />
-        </Suspense>
+        <Outlet />
       </main>
     </section>
   );

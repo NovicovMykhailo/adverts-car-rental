@@ -8,10 +8,11 @@
   padding: 20px;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
-  background-color: rgb(230, 230, 230);
-  /* position: fixed; */
+  background-color: rgba(230, 230, 230, 0.472);
+  position: fixed;
+  backdrop-filter: blur(3px);
   z-index: 15;
-
+  transition: left 0.3s ease, opacity 0.3s ease;
 }
 .navBar {
   padding-top: 200px;
@@ -21,4 +22,20 @@
 }
 .main {
   width: 100%;
+}
+.openMenuBtn {
+  rotate: 90deg;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  position: relative;
+  top: 5%;
+  transition: all 0.3s ease;
+  z-index: 25;
+}
+.openMenuBtn:hover {
+  transform: scale(1.05);
+}
+.clzdMenu{
+  rotate: -90deg;
 }
