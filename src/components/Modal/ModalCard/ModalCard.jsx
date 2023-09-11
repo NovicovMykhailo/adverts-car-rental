@@ -63,20 +63,20 @@ export default function ModalCard({ id }) {
         <p className={css.desription}>{description}</p>
         <h3 className={css.subTitle}>Accessories and functionalities: </h3>
         <ul className={css.feautersList}>
-          {[...functionalities,...accessories ].map(item => (
-            <li>{item}</li>
+          {[...functionalities,...accessories ].map((item, index) => (
+            <li key={index}>{item}</li>
           ))}
  
         </ul>
         <h3 className={css.subTitle}>Rental Conditions:</h3>
         <ul className={css.rentalDetails}>
-          {arrayFromString(rentalConditions).map(item => {
+          {arrayFromString(rentalConditions).map((item, index) => {
             if (item.includes(':')) {
               return (
-                <li> {item.split(':')[0]}: <span className={css.blued}>{item.split(':')[1]}</span> </li>
+                <li key={index}> {item.split(':')[0]}: <span className={css.blued}>{item.split(':')[1]}</span> </li>
               );
             } else {
-              return <li>{item}</li>;
+              return <li key={index}>{item}</li>;
             }
           })}
 
