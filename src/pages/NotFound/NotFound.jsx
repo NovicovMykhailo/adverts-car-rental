@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import css from './NotFound.module.css'
-
-const { StyledSection } = require('components/Section/Section');
+import { StyledSection } from 'components/StyledSection/StyledSection';
 
 const NotFound = () => {
   const navigate = useNavigate();

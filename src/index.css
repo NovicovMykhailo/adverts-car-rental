@@ -1,15 +1,99 @@
-@import 'node_modules/modern-normalize/modern-normalize.css';
+/* @import 'node_modules/normalize.css/normalize.css'; */
+
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #ecf0f1;
+  font: normal 16px Manrope, sans-serif;
 }
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+*{
+  box-sizing: border-box;
+}
+img,
+ul,
+li,
+a,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+article,
+ol {
+  margin: 0;
+  padding: 0;
+}
+img {
+  display: block;
+}
+ul,
+li,
+ol {
+  list-style: none;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+.visually-hidden {
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  border: 0;
+  padding: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  margin: -1px;
+}
+::-webkit-scrollbar {
+  width: 0px;}
+
+
+::-webkit-scrollbar-track {
+  background: rgb(37, 37, 37); 
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: white; 
+}
+
+
+.button-primary{
+  color:white;
+  background-color: #3470FF;
+  text-align: center;
+  font-size: 14px;
+  line-height: 20px / 14px;
+  font-weight: 600;
+  padding: 12px;
+  transition: all 0.1s ease-in-out;
+  border-radius: 12px;
+}
+.button-primary:hover{
+  background-color: #0B44CD;
+}
+
+.button-secondary{
+  color: #3470FF;
+  text-decoration: underline;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px / 16px;
+  transition: all 0.1s ease-in-out;
+}
+.button-primary:hover{
+  background-color: #0B44CD;
 }

@@ -1,0 +1,22 @@
+.section {
+  width: 100%;
+  padding: 0 20px 0 0;
+  display: flex;
+}
+.sideBar {
+  width: 15%;
+  height: 100vh;
+  padding: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background-color: rgb(132, 132, 132);
+}
+.navBar {
+  padding-top: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+.main {
+  width: 100%;
+}
