@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import css from './SharedLayout.module.css';
-import menuIcon from '../../assets/chevron-down.svg';
 import NavMenu from './NavMenu';
+import MenuIcon from './MenuIcon';
 
 const SharedLayout = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -11,12 +11,11 @@ const SharedLayout = () => {
   return (
     <section className={css.section}>
       <NavMenu isActive={isMenuOpen} />
-      <div onClick={() => setIsMenuOpen(prev => !prev)}>
-        <img src={menuIcon} alt="Menu Icon" className={`${css.openMenuBtn} ${!isMenuOpen && css.clzdMenu}`} />
-      </div>
-
+      <MenuIcon isActive={isMenuOpen} onClick={setIsMenuOpen}/>
       <main className={css.main}>
+        <Suspense fallback={<div>Loading.......</div>}>
         <Outlet />
+        </Suspense>
       </main>
     </section>
   );

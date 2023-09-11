@@ -2,7 +2,6 @@ import css from './ModalCard.module.css';
 import { useEffect, useState } from 'react';
 import * as API from '../../../services/carsApi';
 import { getCity, getCountry, arrayFromString, formatMillage } from 'utils/formatAdress';
-
 export default function ModalCard({ id }) {
   const [carInfo, setCarInfo] = useState(null);
   const [status, setStatus] = useState('pending');

@@ -64,7 +64,7 @@ export default function CatalogPage() {
       {page < 4 && <LoadMore onClick={onLoadMore} />}
 
       {showModal && (
-        <Modal onClose={() => setShowModal(prev => !prev)}>
+        <Modal onClose={() => setShowModal(prev => !prev)} active={showModal}>
           <ModalCard id={carId} />
         </Modal>
       )}

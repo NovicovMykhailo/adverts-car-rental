@@ -3,7 +3,7 @@ import css from './SharedLayout.module.css';
 import useMountTransition from 'hooks/useMountTransition';
 
 export default function NavMenu({isActive}) {
-    const isMounted = useMountTransition(isActive, 100)
+    const isMounted = useMountTransition(isActive, 10)
 
 
     const asideStyles = {

@@ -1,0 +1,79 @@
+.mainContainer {
+  width: 100vw;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  color: gray;
+  padding: 200px 140px 100px 140px;
+  background-image: url('../../assets/colorful-background_391639-60.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+.mainContainer:after {
+  content: '';
+  position: absolute;
+  bottom: 24px;
+  width: calc(100% - 2 * 115px);
+  left: 140px;
+  height: 2px;
+  background-color: gray;
+}
+
+.carImage {
+  position: absolute;
+  top: 45%;
+  right: 0;
+
+  width: 60%;
+  transform: translateY(-50%);
+  filter: drop-shadow(0 6mm 4mm rgb(54, 54, 55));
+}
+.mainTitle {
+  font-weight: 800;
+  font-size: 70px;
+  line-height: 70px;
+  text-transform: uppercase;
+  width: 600px;
+
+  filter: drop-shadow(0 2mm 1mm rgb(54, 54, 55));
+}
+.subTitle {
+  margin-top: 20px;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 36px;
+  text-transform: uppercase;
+  width: 500px;
+  filter: drop-shadow(0 2mm 4mm rgb(54, 54, 55));
+}
+
+.decorLine {
+  margin-top: 10%;
+  margin-bottom: 20px;
+  display: block;
+  height: 4px;
+  width: 150px;
+  background-color: gray;
+}
+.bottomText {
+  width: 800px;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 60px;
+  position: relative;
+  z-index: 10;
+}
+.logo {
+  position: absolute;
+  top: 25px;
+  left: 140px;
+}
+.logo:after {
+  content: '';
+  position: absolute;
+  top: 23px;
+  left: 119px;
+  width: calc(100vw - 2 * 180px);
+  height: 2px;
+  background-color: gray;
+}
