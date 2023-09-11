@@ -1,6 +1,5 @@
 .section {
   width: 100%;
-  padding: 0 20px 0 0;
   display: flex;
 }
 .sideBar {
@@ -9,7 +8,8 @@
   padding: 20px;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
-  background-color: rgb(132, 132, 132);
+  background-color: rgb(230, 230, 230);
+
 }
 .navBar {
   padding-top: 200px;

@@ -1,0 +1,70 @@
+.card {
+  width: calc(25% - 22px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.cardTitle {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 24px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.blued {
+  color: #3470ff;
+}
+
+.imageContainer {
+  width: 100%;
+  height: 268px;
+  overflow: hidden;
+  border-radius: 14px;
+  position: relative;
+  margin-bottom: 14px;
+}
+.icon {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  color: white;
+  cursor: pointer;
+}
+.image {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  height: 268px;
+}
+
+.descrList {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 6px;
+  color: #12141780;
+  font-size: 12px;
+  line-height: 18px;
+  margin: 8px 0 28px 0;
+  max-height: 42px;
+  overflow-y: scroll;
+}
+.descrList::-webkit-scrollbar{
+  display: none;
+}
+
+.descrList > li:not(:last-child) {
+  padding-right: 6px;
+  border-right: 1px solid #12141710;
+}
+.descrList > li:last-child {
+  text-wrap: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+

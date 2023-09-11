@@ -81,6 +81,10 @@ a {
   padding: 12px;
   transition: all 0.1s ease-in-out;
   border-radius: 12px;
+  outline: none;
+  border: none;;
+  width: 100%;
+  cursor: pointer;
 }
 .button-primary:hover{
   background-color: #0B44CD;
