@@ -1,0 +1,31 @@
+.cardList{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 29px;
+    justify-content: flex-start;
+    padding: 100px 128px;
+    row-gap: 50px;
+
+}
+
+.favTitle{
+    font-size: 36px;
+    line-height: 30px;
+    font-weight: 800;
+    position: relative;
+    top: 70px;
+    left: 128px;
+    letter-spacing: 1.1px;
+    color: #252525;
+}
+.favTitle:after{
+    content: "";
+    display: block;
+    position: relative;
+    top: -15px;
+    left: 187px;
+    height: 2px;
+    background-color: gray;
+    width: calc(100vw - 2*225px);
+}

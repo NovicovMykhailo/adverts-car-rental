@@ -28,7 +28,7 @@
   cursor: pointer;
   width: 30px;
   height: 30px;
-  position: relative;
+  position: fixed;
   top: 5%;
   transition: all 0.3s ease;
   z-index: 25;

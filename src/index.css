@@ -8,7 +8,9 @@ body {
   background-color: #ecf0f1;
   font: normal 16px Manrope, sans-serif;
 }
-
+body::-webkit-scrollbar{
+  display: none;
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

@@ -5,13 +5,13 @@ import { getCity, getCountry, arrayFromString, formatMillage } from 'utils/forma
 export default function ModalCard({ id }) {
   const [carInfo, setCarInfo] = useState(null);
   const [status, setStatus] = useState('pending');
-
+ 
   useEffect(() => {
     (async () => {
       setStatus('pending');
       try {
         const res = await API.getCarById(id);
-        res && setCarInfo(...res);
+        res && setCarInfo(res);
         res && setStatus('resolved');
       } catch (error) {
         setStatus('rejected');

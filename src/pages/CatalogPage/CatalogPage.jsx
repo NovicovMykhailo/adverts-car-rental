@@ -5,7 +5,7 @@ import css from './CalatogPage.module.css';
 import LoadMore from 'components/LoadMore/LoadMore.jsx';
 import Modal from 'components/Modal/Modal';
 import ModalCard from 'components/Modal/ModalCard/ModalCard.jsx';
-import { readFromLS, writeToLS } from 'services/localStoreApi.js';
+
 
 export default function CatalogPage() {
   const [adverts, setAdverts] = useState(null);
@@ -15,20 +15,16 @@ export default function CatalogPage() {
   const [carId, setCarId] = useState(null);
   // first init
   useEffect(() => {
-    if (!readFromLS('cars')) {
+
       (async () => {
         try {
           const response = await API.getCars();
           response && setAdverts(response);
-          response && writeToLS('cars', response);
         } catch (e) {
           setError(e)
         }
       })();
-    } else {
-      const response = readFromLS('cars');
-      response && setAdverts(response);
-    }
+    
   }, []);
   // pagination
   useEffect(() => {
