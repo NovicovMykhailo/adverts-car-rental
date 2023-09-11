@@ -9,7 +9,7 @@ export default function AdvertCard({ advert }) {
     <li className={css.card} title={`${accessories.join('\n')}`}>
       <div className={css.imageContainer}>
         <img src={img} alt="CarImage" className={css.image} loading="lazy" />
-        <FavBtn classname={css.icon}/>
+        <FavBtn className={css.icon}/>
       </div>
 
       <div>
