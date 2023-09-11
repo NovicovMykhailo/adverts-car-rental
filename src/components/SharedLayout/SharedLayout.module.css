@@ -9,6 +9,8 @@
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
   background-color: rgb(230, 230, 230);
+  /* position: fixed; */
+  z-index: 15;
 
 }
 .navBar {
