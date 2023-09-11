@@ -10,3 +10,12 @@ export const getCountry = address => {
   return formated;
 };
 
+export const formatMillage = (millage)=>{
+  const formatted = Number(millage).toLocaleString()
+  return formatted
+}
+
+export const arrayFromString = (string)=>{
+  const arrayed = string.split('\n')
+  return arrayed
+}

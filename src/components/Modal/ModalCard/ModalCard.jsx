@@ -1,14 +1,15 @@
 import css from './ModalCard.module.css';
 import { useEffect, useState } from 'react';
 import * as API from '../../../services/carsApi';
+import { getCity, getCountry, arrayFromString, formatMillage } from 'utils/formatAdress';
 
 export default function ModalCard({ id }) {
   const [carInfo, setCarInfo] = useState(null);
   const [status, setStatus] = useState('pending');
 
   useEffect(() => {
-  (async () => {
-    setStatus('pending')
+    (async () => {
+      setStatus('pending');
       try {
         const res = await API.getCarById(id);
         res && setCarInfo(...res);
@@ -20,43 +21,71 @@ export default function ModalCard({ id }) {
   }, [id]);
 
   if (status === 'resolved') {
-    const { img } = carInfo;
-
+    const {
+      img,
+      make,
+      model,
+      functionalities,
+      mileage,
+      year,
+      rentalPrice,
+      rentalConditions,
+      address,
+      description,
+      fuelConsumption,
+      engineSize,
+      rentalCompany,
+      type,
+      accessories,
+    } = carInfo;
+   
     return (
-      <article className={css.modalBody}>
+      <article className={css.modalBody} tittle={rentalCompany}>
         <div className={css.imageContainer}>
           <img src={img} alt="CarImage" className={css.image} loading="lazy" />
         </div>
+        <h2 className={css.modalTitle}>
+          <span>
+            {`${make} `}
+            <span className={css.blued}>{`${model}`}</span>
+            {`, ${year}`}
+          </span>
+        </h2>
+        <ul className={css.feautersList}>
+          <li>{getCity(address)}</li>
+          <li>{getCountry(address)}</li>
+          <li>Id: {id}</li>
+          <li>Year: {year}</li>
+          <li>Type: {type}</li>
+          <li>Fuel Consumption: {fuelConsumption}</li>
+          <li>Engine Size: {engineSize}</li>
+        </ul>
+        <p className={css.desription}>{description}</p>
+        <h3 className={css.subTitle}>Accessories and functionalities: </h3>
+        <ul className={css.feautersList}>
+          {[...functionalities,...accessories ].map(item => (
+            <li>{item}</li>
+          ))}
+ 
+        </ul>
+        <h3 className={css.subTitle}>Rental Conditions:</h3>
+        <ul className={css.rentalDetails}>
+          {arrayFromString(rentalConditions).map(item => {
+            if (item.includes(':')) {
+              return (
+                <li> {item.split(':')[0]}: <span className={css.blued}>{item.split(':')[1]}</span> </li>
+              );
+            } else {
+              return <li>{item}</li>;
+            }
+          })}
+
+          <li> Mileage: <span className={css.blued}>{formatMillage(mileage)}</span> </li>
+          <li> Price: <span className={css.blued}>{rentalPrice}</span> </li>
+        </ul>
+        <button type="button" className="button-primary btn-rent">Rental car</button>
       </article>
     );
   }
 }
 
-/**
- * {
-    "id": 9987,
-    "year": 2020,
-    "make": "Volvo",
-    "model": "XC60",
-    "type": "SUV",
-    "img": "https://res.cloudinary.com/ditdqzoio/image/upload/v1687252635/cars/volvo_xc60.webp",
-    "description": "The Volvo XC60 is a compact luxury SUV with a beautiful interior, strong performance, and advanced safety features.",
-    "fuelConsumption": "7.9",
-    "engineSize": "2.0L 4-cylinder",
-    "accessories": [
-        "Premium leather seats",
-        "Harman Kardon audio system",
-        "Hands-free power tailgate"
-    ],
-    "functionalities": [
-        "City Safety collision avoidance technology",
-        "Pilot Assist with adaptive cruise control",
-        "9-inch Sensus touchscreen infotainment system"
-    ],
-    "rentalPrice": "$45",
-    "rentalCompany": "Luxury Car Rentals",
-    "address": "789 Example Boulevard, Odessa, Ukraine",
-    "rentalConditions": "Minimum age: 23\nValid driver's license\nCredit card required",
-    "mileage": 5966
-}
- */
