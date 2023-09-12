@@ -1,8 +1,6 @@
-// import {lazy, useState } from 'react';
-// import { Route, Routes, useNavigate } from 'react-router-dom';
+
 import { lazy} from 'react';
-import { Route, Routes } from 'react-router-dom';
-import NotFound from 'pages/NotFound/NotFound';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import HomePage from 'pages/HomePage/HomePage';
 import SharedLayout from './SharedLayout/SharedLayout';
 
@@ -19,7 +17,7 @@ const App = () => {
         <Route path="/catalog" element={<CatalogPage />} />
         <Route path="/favorites" element={<FavoritesPage />} />
       </Route>
-      <Route path="*" element={<NotFound />} />
+      <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
 };

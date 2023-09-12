@@ -62,7 +62,7 @@ export default function FavoritesPage() {
           <ModalCard id={carId} />
         </Modal>
       )}
-      {showLoadMore && favCards.length > 7 && <LoadMore onClick={() => setPage(prev => prev + 1)} />}
+      {showLoadMore && favCards?.length > 7 && <LoadMore onClick={() => setPage(prev => prev + 1)} />}
     </>
   );
 }
