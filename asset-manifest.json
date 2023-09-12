@@ -1,9 +1,9 @@
 {
   "files": {
     "main.css": "/adverts-car-rental/static/css/main.dd3f063b.css",
-    "main.js": "/adverts-car-rental/static/js/main.ca54a91b.js",
+    "main.js": "/adverts-car-rental/static/js/main.6b0e7c7b.js",
     "static/css/378.c2ec4e62.chunk.css": "/adverts-car-rental/static/css/378.c2ec4e62.chunk.css",
-    "static/js/378.c9d7e9ee.chunk.js": "/adverts-car-rental/static/js/378.c9d7e9ee.chunk.js",
+    "static/js/378.ad114060.chunk.js": "/adverts-car-rental/static/js/378.ad114060.chunk.js",
     "static/css/480.87f15fbd.chunk.css": "/adverts-car-rental/static/css/480.87f15fbd.chunk.css",
     "static/js/480.2e41e4d1.chunk.js": "/adverts-car-rental/static/js/480.2e41e4d1.chunk.js",
     "static/js/279.e8353b7f.chunk.js": "/adverts-car-rental/static/js/279.e8353b7f.chunk.js",
@@ -16,9 +16,9 @@
     "static/media/HeartFull.svg": "/adverts-car-rental/static/media/HeartFull.b825442535eb48fa4c59b66934982764.svg",
     "static/media/chevron-down.svg": "/adverts-car-rental/static/media/chevron-down.b66f095267e47bb0746b07487554158b.svg",
     "main.dd3f063b.css.map": "/adverts-car-rental/static/css/main.dd3f063b.css.map",
-    "main.ca54a91b.js.map": "/adverts-car-rental/static/js/main.ca54a91b.js.map",
+    "main.6b0e7c7b.js.map": "/adverts-car-rental/static/js/main.6b0e7c7b.js.map",
     "378.c2ec4e62.chunk.css.map": "/adverts-car-rental/static/css/378.c2ec4e62.chunk.css.map",
-    "378.c9d7e9ee.chunk.js.map": "/adverts-car-rental/static/js/378.c9d7e9ee.chunk.js.map",
+    "378.ad114060.chunk.js.map": "/adverts-car-rental/static/js/378.ad114060.chunk.js.map",
     "480.87f15fbd.chunk.css.map": "/adverts-car-rental/static/css/480.87f15fbd.chunk.css.map",
     "480.2e41e4d1.chunk.js.map": "/adverts-car-rental/static/js/480.2e41e4d1.chunk.js.map",
     "279.e8353b7f.chunk.js.map": "/adverts-car-rental/static/js/279.e8353b7f.chunk.js.map",
@@ -26,6 +26,6 @@
   },
   "entrypoints": [
     "static/css/main.dd3f063b.css",
-    "static/js/main.ca54a91b.js"
+    "static/js/main.6b0e7c7b.js"
   ]
 }
