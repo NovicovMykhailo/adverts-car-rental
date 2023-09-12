@@ -9,7 +9,7 @@ export default function FavBtn({ id, className, favs, isChanged }) {
 
   async function onLikeButtonPress() {
     setStatus('pending');
-    isChanged && isChanged(prev => !prev);
+    isChanged && isChanged();
     if (!liked) {
       const response = await API.adToFavs(id, true);
       response && setLiked(true);

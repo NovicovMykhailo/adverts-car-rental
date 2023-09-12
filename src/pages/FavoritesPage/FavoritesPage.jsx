@@ -12,7 +12,8 @@ export default function FavoritesPage() {
   const [page, setPage] = useState(1);
   const [showLoadMore, setShowLoadrMore] = useState(true);
   const [carId, setCarId] = useState(null);
-  const [likeChangd, setLikeChanged] = useState(null);
+  const [likeChangd, setLikeChanged] = useState(true);
+
 
   //initialize
   useEffect(() => {
@@ -27,6 +28,7 @@ export default function FavoritesPage() {
     (async () => {
       const res = await API.getFavotites();
       res && setFavCards(res);
+
     })();
   }, [likeChangd]);
 
@@ -55,14 +57,27 @@ export default function FavoritesPage() {
     <>
       <h1 className={css.favTitle}>Favorites</h1>
       <ul className={css.cardList}>
-        {favCards && favCards.map(favCard => <AdvertCard advert={favCard} key={favCard.id} openModal={openModal} isChanged={setLikeChanged} />)}
+        {favCards &&
+          favCards.map(favCard => (
+            <AdvertCard
+              advert={favCard}
+              key={favCard.id}
+              openModal={openModal}
+              isChanged={()=>setLikeChanged(prev => !prev)}
+            />
+          ))}
       </ul>
       {showModal && (
-        <Modal onClose={() => setShowModal(prev => !prev)} active={showModal}>
+        <Modal
+          onClose={() => setShowModal(prev => !prev)}
+          active={showModal}
+        >
           <ModalCard id={carId} />
         </Modal>
       )}
-      {showLoadMore && favCards?.length > 7 && <LoadMore onClick={() => setPage(prev => prev + 1)} />}
+      {showLoadMore && favCards?.length > 7 && (
+        <LoadMore onClick={() => setPage(prev => prev + 1)} />
+      )}
     </>
   );
 }
