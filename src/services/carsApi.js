@@ -26,7 +26,11 @@ export const getFavotites = async (page = 1) => {
   return res.data;
 };
 //search engine
-export const search = async (obj, page) => {
+export const search = async (obj, page, shouldUpdateCache) => {
+  if(shouldUpdateCache){
+    const defaultRes = await axios.get(`/`);
+    writeToLS('cars', defaultRes.data);
+  }
   if (!readFromLS('cars')) {
     const defaultRes = await axios.get(`/`);
     writeToLS('cars', defaultRes.data);

@@ -17,12 +17,14 @@ export default function CatalogPage() {
   const [showLoadMore, setShowLoadrMore] = useState(true);
   const [isSearchActive, setIsSearchActive] = useState(false);
   const [searchData, setSearchData] = useState(null);
+  const [shoundUpdateCache, setShoundUpdateCache] = useState(false);
   const [status, setStatus] = useState('fullfield');
 
   // first init
   useEffect(() => {
     (async () => {
       setStatus('pending');
+      setShoundUpdateCache(false)
       try {
         const response = await API.getCars();
         response && setAdverts(response);
@@ -39,6 +41,7 @@ export default function CatalogPage() {
   useEffect(() => {
     if (page !== 1 && !isSearchActive) {
       (async () => {
+        setShoundUpdateCache(false)
         try {
           const response = await API.getCars(page);
           response &&
@@ -55,12 +58,12 @@ export default function CatalogPage() {
   useEffect(() => {
     (async () => {
       if (isSearchActive) {
-        const response = await API.search(searchData, page);
+        const response = await API.search(searchData, page, shoundUpdateCache);
         response && setAdverts(response);
         response && response.length > 30 && setShowLoadrMore(false)
       }
     })();
-  }, [isSearchActive, page, searchData]);
+  }, [isSearchActive, page, searchData, shoundUpdateCache]);
 
   const openModal = id => {
     setShowModal(true);
@@ -73,6 +76,7 @@ export default function CatalogPage() {
     setShowLoadrMore(true)
     setIsSearchActive(true);
   }
+  
 
   return (
     <>
@@ -86,6 +90,7 @@ export default function CatalogPage() {
                 advert={advert}
                 key={advert.id}
                 openModal={openModal}
+                isChanged={()=>setShoundUpdateCache(true)}
               />
             ))}
         </ul>

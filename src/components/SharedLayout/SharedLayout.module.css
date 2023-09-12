@@ -24,22 +24,24 @@
   width: 100%;
 }
 .openMenuBtn {
-  rotate: 90deg;
+  rotate: -90deg;
   cursor: pointer;
-  width: 30px;
-  height: 30px;
+  width: 60px;
+  height: 60px;
   position: fixed;
   top: 5%;
   left:0;
   transition: all 0.3s ease;
   transition-delay: 50ms;
   z-index: 25;
+  padding: 16px;
+  border-radius: 50%;
 
 }
 .openMenuBtn:hover {
   transform: scale(1.05);
 }
 .clzdMenu{
-  left: 13.5%;
-  rotate: -90deg;
+  left: 11%;
+  rotate: 90deg;
 }
