@@ -5,6 +5,7 @@ import css from './FavoritesPage.module.css';
 import Modal from 'components/Modal/Modal';
 import ModalCard from 'components/Modal/ModalCard/ModalCard';
 import LoadMore from 'components/LoadMore/LoadMore';
+import Skeleton from 'components/Skeleton/Skeleton.jsx';
 
 export default function FavoritesPage() {
   const [favCards, setFavCards] = useState(null);
@@ -13,22 +14,25 @@ export default function FavoritesPage() {
   const [showLoadMore, setShowLoadrMore] = useState(true);
   const [carId, setCarId] = useState(null);
   const [likeChangd, setLikeChanged] = useState(true);
-
+  const [status, setStatus] = useState('fullfield');
 
   //initialize
   useEffect(() => {
     (async () => {
+      setStatus('pending');
       const res = await API.getFavotites();
       res && setFavCards(res);
+      res&& setStatus('fullfield');
     })();
   }, []);
 
   //refresh
   useEffect(() => {
     (async () => {
+      setStatus('pending');
       const res = await API.getFavotites();
       res && setFavCards(res);
-
+      res&& setStatus('fullfield');
     })();
   }, [likeChangd]);
 
@@ -56,17 +60,21 @@ export default function FavoritesPage() {
   return (
     <>
       <h1 className={css.favTitle}>Favorites</h1>
-      <ul className={css.cardList}>
-        {favCards &&
-          favCards.map(favCard => (
-            <AdvertCard
-              advert={favCard}
-              key={favCard.id}
-              openModal={openModal}
-              isChanged={()=>setLikeChanged(prev => !prev)}
-            />
-          ))}
-      </ul>
+      {status === 'fullfield' ? (
+        <ul className={css.cardList}>
+          {favCards &&
+            favCards.map(favCard => (
+              <AdvertCard
+                advert={favCard}
+                key={favCard.id}
+                openModal={openModal}
+                isChanged={() => setLikeChanged(prev => !prev)}
+              />
+            ))}
+        </ul>
+      ) : (<div className={css.margin}><Skeleton /></div>
+        
+      )}
       {showModal && (
         <Modal
           onClose={() => setShowModal(prev => !prev)}
