@@ -7,14 +7,13 @@ import MenuIcon from './MenuIcon';
 const SharedLayout = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  
   return (
     <section className={css.section}>
       <NavMenu isActive={isMenuOpen} />
-      <MenuIcon isActive={isMenuOpen} onClick={setIsMenuOpen}/>
+      <MenuIcon isActive={isMenuOpen} onClick={setIsMenuOpen} />
       <main className={css.main}>
-        <Suspense fallback={<div>Loading.......</div>}>
-        <Outlet />
+        <Suspense>
+          <Outlet />
         </Suspense>
       </main>
     </section>

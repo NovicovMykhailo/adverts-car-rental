@@ -10,7 +10,6 @@ export default function SearchBar({ onSearch }) {
 
   const updateData = e => {
     if (e.value) {
-      console.log(e.name, e.value);
       setData({
         ...data,
         [e.name]: e.value,
@@ -29,7 +28,6 @@ export default function SearchBar({ onSearch }) {
         Car brand
         <Select
           options={carMakes}
-          name="make"
           styles={carMenuStyles}
           onChange={e => updateData({ name: 'make', value: e.value })}
           isSearchable={true}
@@ -41,9 +39,8 @@ export default function SearchBar({ onSearch }) {
         Price/ 1 hour
         <Select
           options={prices}
-          name="price"
           isSearchable={true}
-          onChange={updateData}
+          onChange={e => updateData({ name: 'rentalPrice', value: e.value })}
           closeMenuOnSelect={false}
           placeholder={'To'}
           styles={priceStyles}
@@ -52,11 +49,18 @@ export default function SearchBar({ onSearch }) {
       <label className={css.label}>
         Сar mileage / km
         <div className={css.rangeInputs}>
-          <input type="text" name="millage-from" placeholder="From" onChange={updateData} />
-          <input type="text" name="millage-to" placeholder="To" onChange={updateData} />
+          <input type="text" name="millageFrom" placeholder="From" onChange={updateData} />
+          <input type="text" name="millageTo" placeholder="To" onChange={updateData} />
         </div>
       </label>
-      <button type="submit" className="button-primary btn-search" onClick={() => onSearch(data)}>
+      <button
+        type="submit"
+        className="button-primary btn-search"
+        onClick={e => {
+          e.preventDefault();
+          onSearch(data);
+        }}
+      >
         Search
       </button>
     </form>

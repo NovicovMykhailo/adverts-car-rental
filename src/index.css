@@ -92,12 +92,15 @@ a {
   background-color: #0B44CD;
 }
 .btn-rent{
-  max-width:168px;
+  display: block;
+  width:168px;
+  height:44px;
   margin-top: 24px;
 }
 .btn-search{
   display: block;
   width:136px;
+
   padding: 14px 44px;
 }
 

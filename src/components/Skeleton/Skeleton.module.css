@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 29px;
+
+  padding: 50px 128px 100px 128px;
+  row-gap: 50px;
+  max-width: 1440px;
+}
+
+.container > li {
+  width: calc(25% - 22px);
+  height: 426px;
+  border-radius: 14px;
+  background-color: #1214171c;
+
+  display: inline-block;
+  mask: linear-gradient(90deg, #000 25%, #0005, #000 75%) right/250% 100%;
+  animation: shimmer 2.5s infinite;
+  background-repeat: no-repeat;
+}
+
+@keyframes shimmer {
+  100% {
+    mask-position: left;
+  }
+}

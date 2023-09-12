@@ -1,4 +1,4 @@
-import { useState, useEffect, Suspense } from 'react';
+import { useState, useEffect } from 'react';
 import * as API from '../../services/carsApi.js';
 import AdvertCard from 'components/AdvertCard/AdvertCard.jsx';
 import css from './CalatogPage.module.css';
@@ -6,7 +6,7 @@ import LoadMore from 'components/LoadMore/LoadMore.jsx';
 import Modal from 'components/Modal/Modal';
 import ModalCard from 'components/Modal/ModalCard/ModalCard.jsx';
 import SearchBar from 'components/SearchBar/SearchBar.jsx';
-
+import Skeleton from 'components/Skeleton/Skeleton.jsx';
 
 export default function CatalogPage() {
   const [adverts, setAdverts] = useState(null);
@@ -15,60 +15,97 @@ export default function CatalogPage() {
   const [showModal, setShowModal] = useState(false);
   const [carId, setCarId] = useState(null);
   const [showLoadMore, setShowLoadrMore] = useState(true);
+  const [isSearchActive, setIsSearchActive] = useState(false);
+  const [searchData, setSearchData] = useState(null);
+  const [status, setStatus] = useState('fullfield');
+
   // first init
   useEffect(() => {
-      (async () => {
-        try {
-          const response = await API.getCars();
-          response && setAdverts(response);
-        } catch (e) {
-          setError(e)
-        }
-      })();
-    
+    (async () => {
+      setStatus('pending');
+      try {
+        const response = await API.getCars();
+        response && setAdverts(response);
+        setIsSearchActive(false);
+        response && setStatus('fullfield');
+      } catch (e) {
+        setError(e);
+        setStatus('rejected');
+      }
+    })();
   }, []);
 
   // pagination
   useEffect(() => {
-    if (page !== 1) {
+    if (page !== 1 && !isSearchActive) {
       (async () => {
         try {
           const response = await API.getCars(page);
           response &&
-            setAdverts(prev => { return [...prev, ...response]; });
-            response && response.length < 8 && setShowLoadrMore(false);
+            setAdverts(prev => {
+              return [...prev, ...response];
+            });
+          response && response.length < 8 && setShowLoadrMore(false);
         } catch (e) {}
       })();
     }
-  }, [page]);
+  }, [isSearchActive, page]);
+
+  // Search pagination
+  useEffect(() => {
+    (async () => {
+      if (isSearchActive) {
+        const response = await API.search(searchData, page);
+        response && setAdverts(response);
+        response && response.length > 30 && setShowLoadrMore(false)
+      }
+    })();
+  }, [isSearchActive, page, searchData]);
 
   const openModal = id => {
     setShowModal(true);
     setCarId(id);
   };
 
-  function handleSearch(e){
-    e.preventDefault()
-    console.log(e)
+  function handleSearch(data) {
+    setSearchData(data);
+    setPage(1)
+    setShowLoadrMore(true)
+    setIsSearchActive(true);
   }
 
   return (
     <>
-    <h1 className="visually-hidden">Car Rantal Catalog</h1>
-    <SearchBar onSearch={handleSearch}/>
-      <ul className={css.cardList}>
-        <Suspense fallback={<div>Loading......</div>}>
-          {adverts && adverts.map(advert => <AdvertCard advert={advert} key={advert.id} openModal={openModal} />)}
-        </Suspense>
-      </ul>
-      {showLoadMore && adverts?.length > 7 && <LoadMore onClick={() => setPage(prev => prev + 1)} />}
+      <h1 className="visually-hidden">Car Rantal Catalog</h1>
+      <SearchBar onSearch={handleSearch} />
+      {status === 'fullfield' ? (
+        <ul className={css.cardList}>
+          {adverts &&
+            adverts.map(advert => (
+              <AdvertCard
+                advert={advert}
+                key={advert.id}
+                openModal={openModal}
+              />
+            ))}
+        </ul>
+      ) : (
+        <Skeleton />
+      )}
+
+      {showLoadMore && adverts?.length > 7 && (
+        <LoadMore onClick={() => setPage(prev => prev + 1)} />
+      )}
 
       {showModal && (
-        <Modal onClose={() => setShowModal(prev => !prev)} active={showModal}>
-          <ModalCard id={carId} />
+        <Modal
+          onClose={() => setShowModal(prev => !prev)}
+          active={showModal}
+        >
+          <ModalCard id={carId} closeModal={() => setShowModal(prev => !prev)}/>
         </Modal>
       )}
-      {error && <div>{error}</div>}
+      {status === 'rejected' && error && <div>{error}</div>}
     </>
   );
 }

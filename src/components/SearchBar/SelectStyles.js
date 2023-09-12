@@ -93,7 +93,7 @@ export const priceStyles = {
       content: !state.value.length ? '"$"' : '""',
       color: '#121417',
       position: 'absolute',
-      right: '20px',
+      right: '15px',
       top: '6px',
     },
   }),

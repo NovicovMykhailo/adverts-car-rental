@@ -1,8 +1,11 @@
 import css from './ModalCard.module.css';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import * as API from '../../../services/carsApi';
+
 import { getCity, getCountry, arrayFromString, formatMillage } from 'utils/formatAdress';
-export default function ModalCard({ id }) {
+import closeIcon from '../../../assets/closeIcon.svg'
+export default function ModalCard({ id, closeModal }) {
   const [carInfo, setCarInfo] = useState(null);
   const [status, setStatus] = useState('pending');
  
@@ -40,6 +43,7 @@ export default function ModalCard({ id }) {
    
     return (
       <article className={css.modalBody} tittle={rentalCompany}>
+        <img src={closeIcon} alt="Close Button" className={css.closeBtn} onClick={closeModal}/>
         <div className={css.imageContainer}>
           <img src={img} alt="CarImage" className={css.image} loading="lazy" />
         </div>
@@ -82,7 +86,7 @@ export default function ModalCard({ id }) {
           <li> Mileage: <span className={css.blued}>{formatMillage(mileage)}</span> </li>
           <li> Price: <span className={css.blued}>{rentalPrice}</span> </li>
         </ul>
-        <button type="button" className="button-primary btn-rent">Rental car</button>
+        <Link  className="button-primary btn-rent" data-rel="external" to="tel:+380730000000" target="blank">Rental car</Link>
       </article>
     );
   }

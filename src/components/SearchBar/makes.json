@@ -1,10 +1,10 @@
 [
+  { "value": " ", "label": "All" },
   { "value": "Aston Martin", "label": "Aston Martin" },
   { "value": "Audi", "label": "Audi" },
   { "value": "BMW", "label": "BMW" },
   { "value": "Bentley", "label": "Bentley" },
   { "value": "Buick", "label": "Buick" },
-  { "value": "Chevrolet", "label": "Chevrolet" },
   { "value": "Chevrolet", "label": "Chevrolet" },
   { "value": "Chrysler", "label": "Chrysler" },
   { "value": "Ford", "label": "Ford" },
