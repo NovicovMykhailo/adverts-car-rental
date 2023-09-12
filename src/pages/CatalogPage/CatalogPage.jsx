@@ -14,9 +14,9 @@ export default function CatalogPage() {
   const [error, setError] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [carId, setCarId] = useState(null);
+  const [showLoadMore, setShowLoadrMore] = useState(true);
   // first init
   useEffect(() => {
-
       (async () => {
         try {
           const response = await API.getCars();
@@ -27,6 +27,7 @@ export default function CatalogPage() {
       })();
     
   }, []);
+
   // pagination
   useEffect(() => {
     if (page !== 1) {
@@ -34,33 +35,33 @@ export default function CatalogPage() {
         try {
           const response = await API.getCars(page);
           response &&
-            setAdverts(prev => {
-              return [...prev, ...response];
-            });
+            setAdverts(prev => { return [...prev, ...response]; });
+            response && response.length < 8 && setShowLoadrMore(false);
         } catch (e) {}
       })();
     }
   }, [page]);
-
-  const onLoadMore = () => {
-    setPage(prev => prev + 1);
-  };
 
   const openModal = id => {
     setShowModal(true);
     setCarId(id);
   };
 
+  function handleSearch(e){
+    e.preventDefault()
+    console.log(e)
+  }
+
   return (
     <>
     <h1 className="visually-hidden">Car Rantal Catalog</h1>
-    <SearchBar/>
+    <SearchBar onSearch={handleSearch}/>
       <ul className={css.cardList}>
         <Suspense fallback={<div>Loading......</div>}>
           {adverts && adverts.map(advert => <AdvertCard advert={advert} key={advert.id} openModal={openModal} />)}
         </Suspense>
       </ul>
-      {page < 4 && <LoadMore onClick={onLoadMore} />}
+      {showLoadMore && adverts?.length > 7 && <LoadMore onClick={() => setPage(prev => prev + 1)} />}
 
       {showModal && (
         <Modal onClose={() => setShowModal(prev => !prev)} active={showModal}>

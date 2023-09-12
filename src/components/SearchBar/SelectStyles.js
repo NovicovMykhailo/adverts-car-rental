@@ -1,6 +1,5 @@
 export const carMenuStyles = {
   singleValue: styles => ({
-    //Init value
     ...styles,
     color: '#121417',
   }),
@@ -20,8 +19,8 @@ export const carMenuStyles = {
     fontWeight: '500',
 
     outline: 'none',
-    border: 'none', // Убираем border
-    boxShadow: 'none', // Убираем boxShadow, если есть
+    border: 'none',
+    boxShadow: 'none',
   }),
   option: (styles, state) => ({
     ...styles,
@@ -64,11 +63,11 @@ export const carMenuStyles = {
     },
   }),
   indicatorSeparator: () => ({
-    display: 'none', // Скрываем разделитель
+    display: 'none',
   }),
   dropdownIndicator: (styles, state) => ({
     ...styles,
-    padding: 0, // Убираем паддинги
+    padding: 0,
     color: '#121417',
     transition: 'all .2s ease',
     transform: state.selectProps.menuIsOpen ? 'rotate(180deg)' : null,
@@ -81,7 +80,6 @@ export const carMenuStyles = {
 
 export const priceStyles = {
   singleValue: styles => ({
-    //Init value
     ...styles,
     color: '#121417',
   }),
@@ -115,8 +113,8 @@ export const priceStyles = {
     fontWeight: '500',
 
     outline: 'none',
-    border: 'none', // Убираем border
-    boxShadow: 'none', // Убираем boxShadow, если есть
+    border: 'none',
+    boxShadow: 'none',
   }),
   option: (styles, state) => ({
     ...styles,
@@ -145,9 +143,9 @@ export const priceStyles = {
       width: '8px',
       height: '110px',
 
-      position: 'relative', // Абсолютное позиционирование
-      right: '-4px', // Отступ с правой стороны
-      top: 0, // Верхний отступ
+      position: 'relative',
+      right: '-4px',
+      top: 0,
     },
     '&::-webkit-scrollbar-thumb': {
       borderRadius: '10px',
@@ -158,12 +156,12 @@ export const priceStyles = {
     },
   }),
   indicatorSeparator: () => ({
-    display: 'none', // Скрываем разделитель
+    display: 'none',
   }),
   dropdownIndicator: (styles, state) => ({
     ...styles,
     color: '#121417',
-    padding: 0, // Убираем паддинги
+    padding: 0,
     transition: 'all .2s ease',
     transform: state.selectProps.menuIsOpen ? 'rotate(180deg)' : null,
   }),
