@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/adverts-car-rental/static/css/main.0caa4f5e.css",
-    "main.js": "/adverts-car-rental/static/js/main.ad20734a.js",
-    "static/css/172.e5c33ca2.chunk.css": "/adverts-car-rental/static/css/172.e5c33ca2.chunk.css",
-    "static/js/172.4cdb61d4.chunk.js": "/adverts-car-rental/static/js/172.4cdb61d4.chunk.js",
-    "static/css/733.5ecfada0.chunk.css": "/adverts-car-rental/static/css/733.5ecfada0.chunk.css",
-    "static/js/733.81ff265c.chunk.js": "/adverts-car-rental/static/js/733.81ff265c.chunk.js",
-    "static/js/279.e8353b7f.chunk.js": "/adverts-car-rental/static/js/279.e8353b7f.chunk.js",
-    "static/js/7.a69daf50.chunk.js": "/adverts-car-rental/static/js/7.a69daf50.chunk.js",
-    "static/js/643.8f87dd93.chunk.js": "/adverts-car-rental/static/js/643.8f87dd93.chunk.js",
+    "main.js": "/adverts-car-rental/static/js/main.d728c398.js",
+    "static/css/67.4b12ed1f.chunk.css": "/adverts-car-rental/static/css/67.4b12ed1f.chunk.css",
+    "static/js/67.690a7787.chunk.js": "/adverts-car-rental/static/js/67.690a7787.chunk.js",
+    "static/css/476.e4516c1d.chunk.css": "/adverts-car-rental/static/css/476.e4516c1d.chunk.css",
+    "static/js/476.fe1be102.chunk.js": "/adverts-car-rental/static/js/476.fe1be102.chunk.js",
+    "static/js/279.c66dfb5d.chunk.js": "/adverts-car-rental/static/js/279.c66dfb5d.chunk.js",
+    "static/js/7.13c7349b.chunk.js": "/adverts-car-rental/static/js/7.13c7349b.chunk.js",
+    "static/js/707.e6e05b57.chunk.js": "/adverts-car-rental/static/js/707.e6e05b57.chunk.js",
     "static/media/landRover.png": "/adverts-car-rental/static/media/landRover.2b85dcf99e0682af58ab.png",
     "static/media/colorful-background_391639-60.jpeg": "/adverts-car-rental/static/media/colorful-background_391639-60.1f2a2aa0b07fabf93bd4.jpeg",
     "static/media/logo.svg": "/adverts-car-rental/static/media/logo.4c298823604d8eaa39fe86d758b51dae.svg",
@@ -18,17 +18,17 @@
     "static/media/closeIcon.svg": "/adverts-car-rental/static/media/closeIcon.c68562e5a2ec8cefaf7b97ab0fbf60a5.svg",
     "static/media/chevron-down.svg": "/adverts-car-rental/static/media/chevron-down.b66f095267e47bb0746b07487554158b.svg",
     "main.0caa4f5e.css.map": "/adverts-car-rental/static/css/main.0caa4f5e.css.map",
-    "main.ad20734a.js.map": "/adverts-car-rental/static/js/main.ad20734a.js.map",
-    "172.e5c33ca2.chunk.css.map": "/adverts-car-rental/static/css/172.e5c33ca2.chunk.css.map",
-    "172.4cdb61d4.chunk.js.map": "/adverts-car-rental/static/js/172.4cdb61d4.chunk.js.map",
-    "733.5ecfada0.chunk.css.map": "/adverts-car-rental/static/css/733.5ecfada0.chunk.css.map",
-    "733.81ff265c.chunk.js.map": "/adverts-car-rental/static/js/733.81ff265c.chunk.js.map",
-    "279.e8353b7f.chunk.js.map": "/adverts-car-rental/static/js/279.e8353b7f.chunk.js.map",
-    "7.a69daf50.chunk.js.map": "/adverts-car-rental/static/js/7.a69daf50.chunk.js.map",
-    "643.8f87dd93.chunk.js.map": "/adverts-car-rental/static/js/643.8f87dd93.chunk.js.map"
+    "main.d728c398.js.map": "/adverts-car-rental/static/js/main.d728c398.js.map",
+    "67.4b12ed1f.chunk.css.map": "/adverts-car-rental/static/css/67.4b12ed1f.chunk.css.map",
+    "67.690a7787.chunk.js.map": "/adverts-car-rental/static/js/67.690a7787.chunk.js.map",
+    "476.e4516c1d.chunk.css.map": "/adverts-car-rental/static/css/476.e4516c1d.chunk.css.map",
+    "476.fe1be102.chunk.js.map": "/adverts-car-rental/static/js/476.fe1be102.chunk.js.map",
+    "279.c66dfb5d.chunk.js.map": "/adverts-car-rental/static/js/279.c66dfb5d.chunk.js.map",
+    "7.13c7349b.chunk.js.map": "/adverts-car-rental/static/js/7.13c7349b.chunk.js.map",
+    "707.e6e05b57.chunk.js.map": "/adverts-car-rental/static/js/707.e6e05b57.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.0caa4f5e.css",
-    "static/js/main.ad20734a.js"
+    "static/js/main.d728c398.js"
   ]
 }
