@@ -1,0 +1,47 @@
+.mainStyle {
+  width: 859px;
+  justify-content: center;
+  display: flex;
+  align-items: flex-end;
+
+  gap: 18px;
+  margin: 150px auto 0 auto;
+}
+.label {
+  color: #8a8a89;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+}
+.label > div {
+  margin-top: 8px;
+}
+
+.rangeInputs {
+  display: flex;
+}
+.rangeInputs > input  {
+  color: #121417;
+  font-family: Manrope;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 20px;
+
+  padding: 14px 18px;
+  border: none;
+  outline: none;
+  width: 160px;
+  background-color: #f7f7fb;
+}
+.rangeInputs > input::placeholder{
+  color: #121417;
+}
+.rangeInputs > input:nth-child(1) {
+  border-top-left-radius: 14px;
+  border-bottom-left-radius: 14px;
+  border-right: 1px solid #8a8a8933;
+}
+.rangeInputs > input:nth-child(2) {
+  border-top-right-radius: 14px;
+  border-bottom-right-radius: 14px;
+}

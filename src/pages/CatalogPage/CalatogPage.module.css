@@ -1,12 +1,13 @@
-.cardList{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 29px;
-    justify-content: space-between;
-    padding: 100px 128px;
-    row-gap: 50px;
-    max-width: 1440px;
-    margin: 0 auto;
+.cardList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 29px;
 
+  padding: 50px 128px 100px 128px;
+  row-gap: 50px;
+  max-width: 1440px;
+  margin: 0 auto;
 }
+
+

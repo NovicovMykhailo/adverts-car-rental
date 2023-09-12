@@ -5,6 +5,7 @@ import css from './CalatogPage.module.css';
 import LoadMore from 'components/LoadMore/LoadMore.jsx';
 import Modal from 'components/Modal/Modal';
 import ModalCard from 'components/Modal/ModalCard/ModalCard.jsx';
+import SearchBar from 'components/SearchBar/SearchBar.jsx';
 
 
 export default function CatalogPage() {
@@ -53,6 +54,7 @@ export default function CatalogPage() {
   return (
     <>
     <h1 className="visually-hidden">Car Rantal Catalog</h1>
+    <SearchBar/>
       <ul className={css.cardList}>
         <Suspense fallback={<div>Loading......</div>}>
           {adverts && adverts.map(advert => <AdvertCard advert={advert} key={advert.id} openModal={openModal} />)}

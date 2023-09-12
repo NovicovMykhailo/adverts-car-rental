@@ -95,6 +95,11 @@ a {
   max-width:168px;
   margin-top: 24px;
 }
+.btn-search{
+  display: block;
+  width:136px;
+  padding: 14px 44px;
+}
 
 .button-secondary{
   color: #3470FF;
