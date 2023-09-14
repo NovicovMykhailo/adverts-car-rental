@@ -52,6 +52,7 @@
   margin: 8px 0 28px 0;
   max-height: 42px;
   overflow-y: scroll;
+  cursor: s-resize;
 }
 .descrList::-webkit-scrollbar {
   display: none;

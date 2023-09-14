@@ -30,9 +30,11 @@ export default function FavoritesPage() {
   useEffect(() => {
     (async () => {
       setStatus('pending');
-      const res = await API.getFavotites();
-      res && setFavCards(res);
-      res && setStatus('fullfield');
+      setTimeout(async () => {
+        const res = await API.getFavotites();
+        res && setFavCards(res);
+        res && setStatus('fullfield');
+      }, 300);
     })();
   }, [likeChangd]);
 
@@ -40,17 +42,14 @@ export default function FavoritesPage() {
   useEffect(() => {
     if (page !== 1) {
       (async () => {
-        try {
-          const response = await API.getFavotites(page);
-          response && setFavCards(prev => [...prev, ...response]);
-          response && response.length < 8 && setShowLoadrMore(false);
-        } catch (e) {
-          
-        }
+        const response = await API.getFavotites(page);
+        response && setFavCards(prev => [...prev, ...response]);
+        response && response.length < 8 ? setShowLoadrMore(false) : setShowLoadrMore(true);
       })();
     }
   }, [page]);
 
+  // modal opener
   const openModal = id => {
     setShowModal(true);
     setCarId(id);

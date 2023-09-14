@@ -8,6 +8,7 @@ import ModalCard from 'components/Modal/ModalCard/ModalCard.jsx';
 import SearchBar from 'components/SearchBar/SearchBar.jsx';
 import Skeleton from 'components/Skeleton/Skeleton.jsx';
 import { readFromLS, writeToLS } from 'services/localStoreApi.js';
+import NotFoundComponent from 'components/NotFoundComponent/NotFoundComponent.jsx';
 
 export default function CatalogPage() {
   const [adverts, setAdverts] = useState(null);
@@ -73,18 +74,20 @@ export default function CatalogPage() {
     })();
   }, [isSearchActive, page, searchData, shoundUpdateCache]);
 
+  // modal opener
   const openModal = id => {
     setShowModal(true);
     setCarId(id);
   };
 
+  //handle search
   function handleSearch(data) {
     setSearchData(data);
     setPage(1);
     setShowLoadrMore(true);
     setIsSearchActive(true);
   }
-
+  
   return (
     <>
       <h1 className="visually-hidden">Car Rantal Catalog</h1>
@@ -99,9 +102,8 @@ export default function CatalogPage() {
       ) : (
         <Skeleton />
       )}
-
+      {adverts && adverts.length === 0 && <NotFoundComponent/>}
       {showLoadMore && adverts?.length > 7 && <LoadMore onClick={() => setPage(prev => prev + 1)} />}
-
       {showModal && (
         <Modal onClose={() => setShowModal(prev => !prev)} active={showModal}>
           <ModalCard id={carId} closeModal={() => setShowModal(prev => !prev)} />
