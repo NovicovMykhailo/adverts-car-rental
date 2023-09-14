@@ -31,11 +31,9 @@ export default function FavoritesPage() {
   useEffect(() => {
     (async () => {
       setStatus('pending');
-      setTimeout(async () => {
         const res = await API.getFavotites();
         res && setFavCards(res);
         res && setStatus('fullfield');
-      }, 300);
     })();
   }, [likeChangd]);
 

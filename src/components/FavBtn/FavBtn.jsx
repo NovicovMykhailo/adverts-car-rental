@@ -9,14 +9,15 @@ export default function FavBtn({ id, className, favs, isChanged }) {
 
   async function onLikeButtonPress() {
     setStatus('pending');
-    isChanged && isChanged();
     if (!liked) {
       const response = await API.adToFavs(id, true);
       response && setLiked(true);
+      response && isChanged && isChanged();
       setStatus('resolved');
     } else {
       const response = await API.adToFavs(id, false);
       response && setLiked(false);
+      response && isChanged && isChanged();
       setStatus('resolved');
     }
   }
