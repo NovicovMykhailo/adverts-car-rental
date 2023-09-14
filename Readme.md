@@ -1,10 +1,12 @@
 # Project "Phenix Rentals" 
 
 
-#### ["Phenix Rentals"](https://novicovmykhailo.github.io/adverts-car-rental/) -  is a multi-page website developed with the help of technology and consists of two main parts:  backend and frontend.
+#### ["Phenix Rentals"](https://novicovmykhailo.github.io/adverts-car-rental/) -  is a multi-page website 
+#### &nbsp; &nbsp; &nbsp; &nbsp; developed with the help of technology 
+#### &nbsp; &nbsp; &nbsp; &nbsp; and consists of two main parts:  backend and frontend.
 
 
-## Main features of the project
+##  &nbsp;Main features of the project
 
 ####   1. Backend:  
 - **The project uses a backend built using Mock API as a database.** 
