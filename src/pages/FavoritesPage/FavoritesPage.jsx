@@ -33,6 +33,7 @@ export default function FavoritesPage() {
       setStatus('pending');
         const res = await API.getFavotites();
         res && setFavCards(res);
+        res && res.length < 8 ? setShowLoadrMore(false) : setShowLoadrMore(true) ; 
         res && setStatus('fullfield');
     })();
   }, [likeChangd]);
