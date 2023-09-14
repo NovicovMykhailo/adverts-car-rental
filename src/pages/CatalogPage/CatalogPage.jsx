@@ -9,6 +9,7 @@ import SearchBar from 'components/SearchBar/SearchBar.jsx';
 import Skeleton from 'components/Skeleton/Skeleton.jsx';
 import { readFromLS, writeToLS } from 'services/localStoreApi.js';
 import NotFoundComponent from 'components/NotFoundComponent/NotFoundComponent.jsx';
+import { sortingByPrice } from 'utils/sorting.js';
 
 export default function CatalogPage() {
   const [adverts, setAdverts] = useState(null);
@@ -69,7 +70,7 @@ export default function CatalogPage() {
       if (isSearchActive) {
         const response = await API.search(searchData, page, shoundUpdateCache);
         response && setAdverts(response);
-        response && response.length > 8 && response.length < 30 ? setShowLoadrMore(true) : setShowLoadrMore(false);
+        response && response.length >= 8 && response.length < 30 ? setShowLoadrMore(true) : setShowLoadrMore(false);
       }
     })();
   }, [isSearchActive, page, searchData, shoundUpdateCache]);
@@ -95,7 +96,7 @@ export default function CatalogPage() {
       {status === 'fullfield' ? (
         <ul className={css.cardList}>
           {adverts &&
-            adverts.map(advert => (
+          sortingByPrice( adverts).map(advert => (
               <AdvertCard advert={advert} key={advert.id} openModal={openModal} isChanged={() => setShoundUpdateCache(true)} />
             ))}
         </ul>

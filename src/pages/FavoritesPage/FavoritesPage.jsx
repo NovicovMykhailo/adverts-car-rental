@@ -6,6 +6,7 @@ import Modal from 'components/Modal/Modal';
 import ModalCard from 'components/Modal/ModalCard/ModalCard';
 import LoadMore from 'components/LoadMore/LoadMore';
 import Skeleton from 'components/Skeleton/Skeleton.jsx';
+import { sortingByPrice } from 'utils/sorting';
 
 export default function FavoritesPage() {
   const [favCards, setFavCards] = useState(null);
@@ -61,7 +62,7 @@ export default function FavoritesPage() {
       {status === 'fullfield' ? (
         <ul className={css.cardList}>
           {favCards &&
-            favCards.map(favCard => (
+          sortingByPrice(favCards).map(favCard => (
               <AdvertCard advert={favCard} key={favCard.id} openModal={openModal} isChanged={() => setLikeChanged(prev => !prev)} />
             ))}
         </ul>

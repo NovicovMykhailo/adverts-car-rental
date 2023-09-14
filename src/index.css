@@ -47,6 +47,10 @@ a {
   text-decoration: none;
 }
 
+body{
+  scroll-behavior: smooth;
+}
+
 
 .visually-hidden {
   position: absolute;
