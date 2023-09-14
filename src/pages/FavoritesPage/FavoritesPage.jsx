@@ -7,6 +7,7 @@ import ModalCard from 'components/Modal/ModalCard/ModalCard';
 import LoadMore from 'components/LoadMore/LoadMore';
 import Skeleton from 'components/Skeleton/Skeleton.jsx';
 import { sortingByPrice } from 'utils/sorting';
+import NotFoundComponent from 'components/NotFoundComponent/NotFoundComponent';
 
 export default function FavoritesPage() {
   const [favCards, setFavCards] = useState(null);
@@ -60,16 +61,17 @@ export default function FavoritesPage() {
       <h1 className={css.favTitle}>Favorites</h1>
       {status === 'fullfield' ? (
         <ul className={css.cardList}>
-          {favCards &&
-          sortingByPrice(favCards).map(favCard => (
+          {favCards &&  (        sortingByPrice(favCards).map(favCard => (
               <AdvertCard advert={favCard} key={favCard.id} openModal={openModal} isChanged={() => setLikeChanged(prev => !prev)} />
-            ))}
+            )))}
+ 
         </ul>
       ) : (
         <div className={css.margin}>
           <Skeleton />
         </div>
       )}
+      {favCards && favCards.length === 0 && <NotFoundComponent message={'Please add some cars to favorites'}/>}
       {showModal && (
         <Modal onClose={() => setShowModal(prev => !prev)} active={showModal}>
           <ModalCard id={carId} closeModal={() => setShowModal(prev => !prev)} />

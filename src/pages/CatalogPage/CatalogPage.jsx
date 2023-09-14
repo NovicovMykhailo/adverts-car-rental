@@ -103,7 +103,7 @@ export default function CatalogPage() {
       ) : (
         <Skeleton />
       )}
-      {adverts && adverts.length === 0 && <NotFoundComponent/>}
+      {adverts && adverts.length === 0 && <NotFoundComponent message={"The specified search result is not found"}/>}
       {showLoadMore && adverts?.length > 7 && <LoadMore onClick={() => setPage(prev => prev + 1)} />}
       {showModal && (
         <Modal onClose={() => setShowModal(prev => !prev)} active={showModal}>

@@ -1,7 +1,7 @@
-export default function NotFoundComponent() {
+export default function NotFoundComponent({message}) {
   return (
     <div style={styles.container}>
-      <h2 style={styles.text}>The specified search result is not found</h2>
+      <h2 style={styles.text}>{message}</h2>
     </div>
   );
 }
