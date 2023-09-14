@@ -25,18 +25,28 @@ export const getFavotites = async (page = 1) => {
   const res = await axios.get(`?favs=true&page=${page}&limit=8`);
   return res.data;
 };
+
+//get all
+export const getAll = async () => {
+  const defaultRes = await axios.get(`/`);
+  return defaultRes;
+};
+
 //search engine
 export const search = async (obj, page, shouldUpdateCache) => {
-  if(shouldUpdateCache){
-    const defaultRes = await axios.get(`/`);
+  if (shouldUpdateCache) {
+    const defaultRes = await getAll();
     writeToLS('cars', defaultRes.data);
+    return;
   }
   if (!readFromLS('cars')) {
     const defaultRes = await axios.get(`/`);
     writeToLS('cars', defaultRes.data);
+    return defaultRes;
   } else {
     const data = readFromLS('cars');
     const result = await smartFilter(data, obj);
-    return result.slice(0, page*8);
+    return result.slice(0, page * 8);
   }
 };
+

@@ -7,6 +7,7 @@ import Modal from 'components/Modal/Modal';
 import ModalCard from 'components/Modal/ModalCard/ModalCard.jsx';
 import SearchBar from 'components/SearchBar/SearchBar.jsx';
 import Skeleton from 'components/Skeleton/Skeleton.jsx';
+import { readFromLS, writeToLS } from 'services/localStoreApi.js';
 
 export default function CatalogPage() {
   const [adverts, setAdverts] = useState(null);
@@ -24,15 +25,20 @@ export default function CatalogPage() {
   useEffect(() => {
     (async () => {
       setStatus('pending');
-      setShoundUpdateCache(false)
+      setShoundUpdateCache(false);
+      setError(null);
       try {
+        if (!readFromLS('cars')) {
+          const all = await API.getAll();
+          all && writeToLS('cars', all.data);
+        }
         const response = await API.getCars();
         response && setAdverts(response);
         setIsSearchActive(false);
         response && setStatus('fullfield');
       } catch (e) {
-        setError(e);
         setStatus('rejected');
+        setError(e.message);
       }
     })();
   }, []);
@@ -41,7 +47,7 @@ export default function CatalogPage() {
   useEffect(() => {
     if (page !== 1 && !isSearchActive) {
       (async () => {
-        setShoundUpdateCache(false)
+        setShoundUpdateCache(false);
         try {
           const response = await API.getCars(page);
           response &&
@@ -49,7 +55,9 @@ export default function CatalogPage() {
               return [...prev, ...response];
             });
           response && response.length < 8 && setShowLoadrMore(false);
-        } catch (e) {}
+        } catch (e) {
+          setError(e.message);
+        }
       })();
     }
   }, [isSearchActive, page]);
@@ -60,7 +68,8 @@ export default function CatalogPage() {
       if (isSearchActive) {
         const response = await API.search(searchData, page, shoundUpdateCache);
         response && setAdverts(response);
-        response && response.length > 30 && setShowLoadrMore(false)
+        response && response.length > 8 && setShowLoadrMore(true);
+        response && response.length > 30 && setShowLoadrMore(false);
       }
     })();
   }, [isSearchActive, page, searchData, shoundUpdateCache]);
@@ -72,11 +81,10 @@ export default function CatalogPage() {
 
   function handleSearch(data) {
     setSearchData(data);
-    setPage(1)
-    setShowLoadrMore(true)
+    setPage(1);
+    setShowLoadrMore(true);
     setIsSearchActive(true);
   }
-  
 
   return (
     <>
@@ -86,31 +94,23 @@ export default function CatalogPage() {
         <ul className={css.cardList}>
           {adverts &&
             adverts.map(advert => (
-              <AdvertCard
-                advert={advert}
-                key={advert.id}
-                openModal={openModal}
-                isChanged={()=>setShoundUpdateCache(true)}
-              />
+              <AdvertCard advert={advert} key={advert.id} openModal={openModal} isChanged={() => setShoundUpdateCache(true)} />
             ))}
         </ul>
       ) : (
         <Skeleton />
       )}
 
-      {showLoadMore && adverts?.length > 7 && (
-        <LoadMore onClick={() => setPage(prev => prev + 1)} />
-      )}
+      {showLoadMore && adverts?.length > 7 && <LoadMore onClick={() => setPage(prev => prev + 1)} />}
 
       {showModal && (
-        <Modal
-          onClose={() => setShowModal(prev => !prev)}
-          active={showModal}
-        >
-          <ModalCard id={carId} closeModal={() => setShowModal(prev => !prev)}/>
+        <Modal onClose={() => setShowModal(prev => !prev)} active={showModal}>
+          <ModalCard id={carId} closeModal={() => setShowModal(prev => !prev)} />
         </Modal>
       )}
-      {status === 'rejected' && error && <div>{error}</div>}
+      {status === 'rejected' && error && (
+        <div  className={css.error} > {error} </div>
+      )}
     </>
   );
 }

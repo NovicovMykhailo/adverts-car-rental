@@ -97,7 +97,6 @@ export const priceStyles = {
       top: '6px',
     },
   }),
-
   control: (styles, { isSelected }) => ({
     ...styles,
     display: 'flex',

@@ -1,15 +1,19 @@
 import css from './AdvertCard.module.css';
 import { getCity, getCountry } from 'utils/formatAdress';
 import FavBtn from 'components/FavBtn/FavBtn';
+import Image from './Image';
+
 
 export default function AdvertCard({ advert, openModal, isChanged }) {
   const { img, id, year, model, make, rentalPrice, rentalCompany, type, address, accessories, favs } = advert;
 
+
+
   return (
     <li className={css.card} title={`${accessories.join('\n')}`}>
       <div className={css.imageContainer}>
-        <img src={img} alt="CarImage" className={css.image} loading="lazy" />
-        <FavBtn className={css.icon} favs={favs? favs : false} id={id} isChanged={isChanged}/>
+        <Image src={img}/>       
+        <FavBtn className={css.icon} favs={favs ? favs : false} id={id} isChanged={isChanged} />
       </div>
 
       <div>

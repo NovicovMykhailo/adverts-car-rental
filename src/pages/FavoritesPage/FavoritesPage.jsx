@@ -22,7 +22,7 @@ export default function FavoritesPage() {
       setStatus('pending');
       const res = await API.getFavotites();
       res && setFavCards(res);
-      res&& setStatus('fullfield');
+      res && setStatus('fullfield');
     })();
   }, []);
 
@@ -32,7 +32,7 @@ export default function FavoritesPage() {
       setStatus('pending');
       const res = await API.getFavotites();
       res && setFavCards(res);
-      res&& setStatus('fullfield');
+      res && setStatus('fullfield');
     })();
   }, [likeChangd]);
 
@@ -42,12 +42,11 @@ export default function FavoritesPage() {
       (async () => {
         try {
           const response = await API.getFavotites(page);
-          response &&
-            setFavCards(prev => {
-              return [...prev, ...response];
-            });
+          response && setFavCards(prev => [...prev, ...response]);
           response && response.length < 8 && setShowLoadrMore(false);
-        } catch (e) {}
+        } catch (e) {
+          
+        }
       })();
     }
   }, [page]);
@@ -64,28 +63,20 @@ export default function FavoritesPage() {
         <ul className={css.cardList}>
           {favCards &&
             favCards.map(favCard => (
-              <AdvertCard
-                advert={favCard}
-                key={favCard.id}
-                openModal={openModal}
-                isChanged={() => setLikeChanged(prev => !prev)}
-              />
+              <AdvertCard advert={favCard} key={favCard.id} openModal={openModal} isChanged={() => setLikeChanged(prev => !prev)} />
             ))}
         </ul>
-      ) : (<div className={css.margin}><Skeleton /></div>
-        
+      ) : (
+        <div className={css.margin}>
+          <Skeleton />
+        </div>
       )}
       {showModal && (
-        <Modal
-          onClose={() => setShowModal(prev => !prev)}
-          active={showModal}
-        >
-          <ModalCard id={carId} />
+        <Modal onClose={() => setShowModal(prev => !prev)} active={showModal}>
+          <ModalCard id={carId} closeModal={() => setShowModal(prev => !prev)} />
         </Modal>
       )}
-      {showLoadMore && favCards?.length > 7 && (
-        <LoadMore onClick={() => setPage(prev => prev + 1)} />
-      )}
+      {showLoadMore && favCards?.length > 7 && <LoadMore onClick={() => setPage(prev => prev + 1)} />}
     </>
   );
 }

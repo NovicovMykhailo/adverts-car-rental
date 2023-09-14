@@ -7,11 +7,12 @@
   padding: 50px 128px 100px 128px;
   row-gap: 50px;
   max-width: 1440px;
+  margin: 0 auto;
 }
 
 .container > li {
   width: calc(25% - 22px);
-  height: 426px;
+  height: 268px;
   border-radius: 14px;
   background-color: #1214171c;
 

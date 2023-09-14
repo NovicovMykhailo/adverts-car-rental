@@ -53,7 +53,7 @@
   max-height: 42px;
   overflow-y: scroll;
 }
-.descrList::-webkit-scrollbar{
+.descrList::-webkit-scrollbar {
   display: none;
 }
 
@@ -67,5 +67,27 @@
   text-overflow: ellipsis;
 }
 
+.isLoading {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  height: 268px;
+  border-radius: 14px;
+  background-color: #1214171c;
+  backdrop-filter: blur(20px);
 
+  display: inline-block;
+  mask: linear-gradient(90deg, #000 25%, #0005, #000 75%) right/250% 100%;
+  animation: shimmer 2.5s infinite;
+  background-repeat: no-repeat;
+}
 
+@keyframes shimmer {
+  100% {
+    mask-position: left;
+  }
+}
+.hide{
+  display: 'none'
+}

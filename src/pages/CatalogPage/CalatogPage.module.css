@@ -10,4 +10,9 @@
   margin: 0 auto;
 }
 
-
+.error {
+  display: flex;
+  justify-content: center;
+  margin: 50px 10px;
+  font-family: inherit;
+}
