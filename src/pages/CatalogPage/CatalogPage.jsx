@@ -28,7 +28,7 @@ export default function CatalogPage() {
       setShoundUpdateCache(false);
       setError(null);
       try {
-        if (!readFromLS('cars')) {
+        if (!readFromLS('cars') ) {
           const all = await API.getAll();
           all && writeToLS('cars', all.data);
         }
@@ -68,8 +68,7 @@ export default function CatalogPage() {
       if (isSearchActive) {
         const response = await API.search(searchData, page, shoundUpdateCache);
         response && setAdverts(response);
-        response && response.length > 8 && setShowLoadrMore(true);
-        response && response.length > 30 && setShowLoadrMore(false);
+        response && response.length > 8 && response.length < 30 ? setShowLoadrMore(true) : setShowLoadrMore(false);
       }
     })();
   }, [isSearchActive, page, searchData, shoundUpdateCache]);
@@ -108,9 +107,7 @@ export default function CatalogPage() {
           <ModalCard id={carId} closeModal={() => setShowModal(prev => !prev)} />
         </Modal>
       )}
-      {status === 'rejected' && error && (
-        <div  className={css.error} > {error} </div>
-      )}
+      {status === 'rejected' && error && <div className={css.error}> {error} </div>}
     </>
   );
 }
