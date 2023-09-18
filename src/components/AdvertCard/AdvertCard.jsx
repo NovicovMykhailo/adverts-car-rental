@@ -37,7 +37,7 @@ export default function AdvertCard({ advert, openModal, isChanged }) {
           <li>{accessories[2]}</li>
         </ul>
       </div>
-      <button className="button-primary" onClick={() => openModal(id)}>
+      <button className="button-primary" onClick={() => openModal(advert)}>
         Learn more
       </button>
     </li>

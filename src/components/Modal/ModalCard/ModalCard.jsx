@@ -1,29 +1,13 @@
 import css from './ModalCard.module.css';
-import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import * as API from '../../../services/carsApi';
+
 
 import { getCity, getCountry, arrayFromString, formatMillage } from 'utils/formatAdress';
 import closeIcon from '../../../assets/closeIcon.svg'
-export default function ModalCard({ id, closeModal }) {
-  const [carInfo, setCarInfo] = useState(null);
-  const [status, setStatus] = useState('pending');
- 
-  useEffect(() => {
-    (async () => {
-      setStatus('pending');
-      try {
-        const res = await API.getCarById(id);
-        res && setCarInfo(res);
-        res && setStatus('resolved');
-      } catch (error) {
-        setStatus('rejected');
-      }
-    })();
-  }, [id]);
+export default function ModalCard({ advert, closeModal }) {
 
-  if (status === 'resolved') {
     const {
+      id,
       img,
       make,
       model,
@@ -39,7 +23,7 @@ export default function ModalCard({ id, closeModal }) {
       rentalCompany,
       type,
       accessories,
-    } = carInfo;
+    } = advert;
    
     return (
       <article className={css.modalBody} tittle={rentalCompany}>
@@ -89,6 +73,6 @@ export default function ModalCard({ id, closeModal }) {
         <Link  className="button-primary btn-rent" data-rel="external" to="tel:+380730000000" target="blank">Rental car</Link>
       </article>
     );
-  }
+
 }
 

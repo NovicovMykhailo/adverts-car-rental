@@ -16,7 +16,7 @@ export default function CatalogPage() {
   const [page, setPage] = useState(1);
   const [error, setError] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  const [carId, setCarId] = useState(null);
+  const [advert, setAdvert] = useState(null);
   const [showLoadMore, setShowLoadrMore] = useState(true);
   const [isSearchActive, setIsSearchActive] = useState(false);
   const [searchData, setSearchData] = useState(null);
@@ -76,9 +76,9 @@ export default function CatalogPage() {
   }, [isSearchActive, page, searchData, shoundUpdateCache]);
 
   // modal opener
-  const openModal = id => {
+  const openModal = advert => {
     setShowModal(true);
-    setCarId(id);
+    setAdvert(advert);
   };
 
   //handle search
@@ -107,7 +107,7 @@ export default function CatalogPage() {
       {showLoadMore && adverts?.length > 7 && <LoadMore onClick={() => setPage(prev => prev + 1)} />}
       {showModal && (
         <Modal onClose={() => setShowModal(prev => !prev)} active={showModal}>
-          <ModalCard id={carId} closeModal={() => setShowModal(prev => !prev)} />
+          <ModalCard advert={advert} closeModal={() => setShowModal(prev => !prev)} />
         </Modal>
       )}
       {status === 'rejected' && error && <div className={css.error}> {error} </div>}

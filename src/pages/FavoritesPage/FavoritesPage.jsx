@@ -14,7 +14,7 @@ export default function FavoritesPage() {
   const [showModal, setShowModal] = useState(false);
   const [page, setPage] = useState(1);
   const [showLoadMore, setShowLoadrMore] = useState(true);
-  const [carId, setCarId] = useState(null);
+  const [advert, setAdvert] = useState(null);
   const [likeChangd, setLikeChanged] = useState(true);
   const [status, setStatus] = useState('fullfield');
 
@@ -51,9 +51,9 @@ export default function FavoritesPage() {
   }, [page]);
 
   // modal opener
-  const openModal = id => {
+  const openModal = advert => {
     setShowModal(true);
-    setCarId(id);
+    setAdvert(advert);
   };
 
   return (
@@ -74,7 +74,7 @@ export default function FavoritesPage() {
       {favCards && favCards.length === 0 && <NotFoundComponent message={'Please add some cars to favorites'}/>}
       {showModal && (
         <Modal onClose={() => setShowModal(prev => !prev)} active={showModal}>
-          <ModalCard id={carId} closeModal={() => setShowModal(prev => !prev)} />
+          <ModalCard advert={advert} closeModal={() => setShowModal(prev => !prev)} />
         </Modal>
       )}
       {showLoadMore && favCards?.length > 7 && <LoadMore onClick={() => setPage(prev => prev + 1)} />}
