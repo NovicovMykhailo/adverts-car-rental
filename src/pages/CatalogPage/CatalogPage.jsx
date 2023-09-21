@@ -9,7 +9,7 @@ import SearchBar from 'components/SearchBar/SearchBar.jsx';
 import Skeleton from 'components/Skeleton/Skeleton.jsx';
 import { readFromLS, writeToLS } from 'services/localStoreApi.js';
 import NotFoundComponent from 'components/NotFoundComponent/NotFoundComponent.jsx';
-import { sortingByPrice } from 'utils/sorting.js';
+import { useRef } from 'react';
 
 export default function CatalogPage() {
   const [adverts, setAdverts] = useState(null);
@@ -21,7 +21,30 @@ export default function CatalogPage() {
   const [isSearchActive, setIsSearchActive] = useState(false);
   const [searchData, setSearchData] = useState(null);
   const [shoundUpdateCache, setShoundUpdateCache] = useState(false);
+  const [shouldScrollToRow, setShouldScrollToRow] = useState(false);
+  const [itemsUpdated, setItemsUpdated] = useState(false);
   const [status, setStatus] = useState('fullfield');
+
+  const gallery = useRef();
+
+  useEffect(() => {
+    if (shouldScrollToRow) {
+      setTimeout(() => {
+        const galleryLength = gallery.current?.childNodes.length;
+        const index = galleryLength - 8;
+        gallery.current?.childNodes[index]?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 600);
+      setShouldScrollToRow(false);
+    }
+  }, [page, shouldScrollToRow]);
+
+  useEffect(() => {
+    if (itemsUpdated) {
+      setShouldScrollToRow(true);
+      setItemsUpdated(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [itemsUpdated]);
 
   // first init
   useEffect(() => {
@@ -30,12 +53,13 @@ export default function CatalogPage() {
       setShoundUpdateCache(false);
       setError(null);
       try {
-        if (!readFromLS('cars') ) {
+        if (!readFromLS('cars')) {
           const all = await API.getAll();
           all && writeToLS('cars', all.data);
         }
         const response = await API.getCars();
         response && setAdverts(response);
+        response && setTimeout(()=> window.scrollBy({top: 80, behavior: "smooth"}), 300)
         setIsSearchActive(false);
         response && setStatus('fullfield');
       } catch (e) {
@@ -43,6 +67,7 @@ export default function CatalogPage() {
         setError(e.message);
       }
     })();
+
   }, []);
 
   // pagination
@@ -56,6 +81,7 @@ export default function CatalogPage() {
             setAdverts(prev => {
               return [...prev, ...response];
             });
+          response && setItemsUpdated(true);
           response && response.length < 8 && setShowLoadrMore(false);
         } catch (e) {
           setError(e.message);
@@ -70,6 +96,7 @@ export default function CatalogPage() {
       if (isSearchActive) {
         const response = await API.search(searchData, page, shoundUpdateCache);
         response && setAdverts(response);
+        response && setItemsUpdated(true);
         response && response.length >= 8 && response.length < 30 ? setShowLoadrMore(true) : setShowLoadrMore(false);
       }
     })();
@@ -88,22 +115,23 @@ export default function CatalogPage() {
     setShowLoadrMore(true);
     setIsSearchActive(true);
   }
-  
+
+
   return (
     <>
-      <h1 className="visually-hidden">Car Rantal Catalog</h1>
+      <h2 className="visually-hidden">Car Rantal Catalog</h2>
       <SearchBar onSearch={handleSearch} />
       {status === 'fullfield' ? (
-        <ul className={css.cardList}>
+        <ul className={css.cardList} ref={gallery}>
           {adverts &&
-          sortingByPrice( adverts).map(advert => (
+            adverts.map(advert => (
               <AdvertCard advert={advert} key={advert.id} openModal={openModal} isChanged={() => setShoundUpdateCache(true)} />
             ))}
         </ul>
       ) : (
         <Skeleton />
       )}
-      {adverts && adverts.length === 0 && <NotFoundComponent message={"The specified search result is not found"}/>}
+      {adverts && adverts.length === 0 && <NotFoundComponent message={'The specified search result is not found'} />}
       {showLoadMore && adverts?.length > 7 && <LoadMore onClick={() => setPage(prev => prev + 1)} />}
       {showModal && (
         <Modal onClose={() => setShowModal(prev => !prev)} active={showModal}>

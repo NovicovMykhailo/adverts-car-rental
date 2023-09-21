@@ -18,9 +18,11 @@
 }
 
 .rangeInputs {
+  margin-top: 8px;
   display: flex;
+  position: relative;
 }
-.rangeInputs > input  {
+.rangeInputs > input {
   color: #121417;
   font-family: Manrope;
   font-size: 18px;
@@ -33,15 +35,40 @@
   width: 160px;
   background-color: #f7f7fb;
 }
-.rangeInputs > input::placeholder{
-  color: #121417;
-}
+
 .rangeInputs > input:nth-child(1) {
   border-top-left-radius: 14px;
   border-bottom-left-radius: 14px;
   border-right: 1px solid #8a8a8933;
+  padding-left: 70px;
 }
-.rangeInputs > input:nth-child(2) {
+.rangeInputs > input:nth-child(3) {
   border-top-right-radius: 14px;
   border-bottom-right-radius: 14px;
+  padding-left: 48px;
+}
+
+.mileageFrom,
+.mileageTo {
+  position: absolute;
+  top: 30%;
+
+  width: 50px;
+  color: #121417;
+  font-family: Manrope;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 20px;
+}
+.mileageFrom {
+  left: 24px;
+}
+.mileageTo {
+  left: calc(160px + 24px);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

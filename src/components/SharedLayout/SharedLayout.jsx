@@ -12,13 +12,14 @@ const SharedLayout = () => {
 
   return (
     <section className={css.section}>
+      <h1 className="visually-hidden">Rent your pearfect car</h1>
       <NavMenu isActive={isMenuOpen} setClose={setIsMenuOpen}/>
       <MenuIcon isActive={isMenuOpen} onClick={setIsMenuOpen} />
-      <main className={css.main}>
+      <div className={css.main}>
         <Suspense>
           <Outlet />
         </Suspense>
-      </main>
+      </div>
     </section>
   );
 };

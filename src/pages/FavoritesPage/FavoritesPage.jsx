@@ -58,7 +58,7 @@ export default function FavoritesPage() {
 
   return (
     <>
-      <h1 className={css.favTitle}>Favorites</h1>
+      <h2 className={css.favTitle}>Favorites</h2>
       {status === 'fullfield' ? (
         <ul className={css.cardList}>
           {favCards &&  (        sortingByPrice(favCards).map(favCard => (

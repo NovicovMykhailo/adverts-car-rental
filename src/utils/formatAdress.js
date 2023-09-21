@@ -19,3 +19,26 @@ export const arrayFromString = (string)=>{
   const arrayed = string.split('\n')
   return arrayed
 }
+
+
+export const addDecimalComa = (obj) =>{
+  var num = getNumber(obj);
+  if (num === 0) {
+    return obj = '';
+  } else {
+    return Number(obj).toLocaleString();
+  }
+
+}
+
+
+function getNumber(_str) {
+  var arr = _str.split('');
+  var out = [];
+  for (var cnt = 0; cnt < arr.length; cnt++) {
+    if (isNaN(arr[cnt]) === false) {
+      out.push(arr[cnt]);
+    }
+  }
+  return Number(out.join(''));
+}

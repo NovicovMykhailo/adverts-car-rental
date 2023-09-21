@@ -10,14 +10,14 @@ export default function AdvertCard({ advert, openModal, isChanged }) {
 
 
   return (
-    <li className={css.card} title={`${accessories.join('\n')}`}>
+    <li className={css.card} title={`${accessories.join('\n')}`} data-aos="zoom-in" >
       <div className={css.imageContainer}>
         <Image src={img}/>       
         <FavBtn className={css.icon} favs={favs ? favs : false} id={id} isChanged={isChanged} />
       </div>
 
       <div>
-        <h2 className={css.cardTitle}>
+        <h3 className={css.cardTitle}>
           <span>
             {`${make} `}
             <span className={css.blued}>{`${model}`}</span>
@@ -25,7 +25,7 @@ export default function AdvertCard({ advert, openModal, isChanged }) {
           </span>
 
           <span>{rentalPrice}</span>
-        </h2>
+        </h3>
         <ul className={css.descrList}>
           <li>{getCity(address)}</li>
           <li>{getCountry(address)}</li>

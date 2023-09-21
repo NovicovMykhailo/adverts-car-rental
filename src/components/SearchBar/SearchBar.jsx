@@ -1,5 +1,7 @@
 import css from './SearchBar.module.css';
 import Select from 'react-select';
+import { addDecimalComa } from 'utils/formatAdress';
+
 import carMakes from './makes.json';
 import prices from './priceRange.json';
 import { carMenuStyles, priceStyles } from './SelectStyles';
@@ -7,6 +9,8 @@ import { useState } from 'react';
 
 export default function SearchBar({ onSearch }) {
   const [data, setData] = useState({});
+  const [from, setFrom] = useState('');
+  const [to, setTo] = useState('');
 
   const updateData = e => {
     if (e.value) {
@@ -15,6 +19,13 @@ export default function SearchBar({ onSearch }) {
         [e.name]: e.value,
       });
     } else {
+      if (e.target.name === 'millageFrom') {
+        const updatedValue = addDecimalComa(e.target.value);
+        setFrom(updatedValue);
+      } else if (e.target.name === 'millageTo') {
+        const updatedValue = addDecimalComa(e.target.value);
+        setTo(updatedValue);
+      }
       setData({
         ...data,
         [e.target.name]: e.target.value,
@@ -23,10 +34,16 @@ export default function SearchBar({ onSearch }) {
   };
 
   return (
+    <>
+   
+    <h2 className="visually-hidden">Filter to find cars by price millage mark</h2>
     <form className={css.mainStyle}>
-      <label className={css.label}>
-        Car brand
+      <div className={css.label} >
+        <label htmlFor="make" >
+          Car brand
+        </label>
         <Select
+          inputId="make"
           options={carMakes}
           styles={carMenuStyles}
           onChange={e => updateData({ name: 'make', value: e.value })}
@@ -34,10 +51,12 @@ export default function SearchBar({ onSearch }) {
           closeMenuOnSelect={false}
           placeholder="Enter the text"
         />
-      </label>
-      <label className={css.label}>
-        Price/ 1 hour
+      </div>
+
+      <div className={css.label}>
+        <label htmlFor="rentalPrice">Price/ 1 hour</label>
         <Select
+          inputId="rentalPrice"
           options={prices}
           isSearchable={true}
           onChange={e => updateData({ name: 'rentalPrice', value: e.value })}
@@ -45,14 +64,17 @@ export default function SearchBar({ onSearch }) {
           placeholder={'To'}
           styles={priceStyles}
         />
-      </label>
-      <label className={css.label}>
-        Сar mileage / km
-        <div className={css.rangeInputs}>
-          <input type="text" name="millageFrom" placeholder="From" onChange={updateData} />
-          <input type="text" name="millageTo" placeholder="To" onChange={updateData} />
-        </div>
-      </label>
+      </div>
+      <span className={css.label}>
+        <label htmlFor="range">Сar mileage / km </label>
+        <span className={css.rangeInputs}>
+          <input type="text" name="millageFrom" id="range" onChange={updateData} value={from}  />
+          <span className={css.mileageFrom}>From</span>
+          <input type="text" name="millageTo"  onChange={updateData} value={to}  />
+          <span className={css.mileageTo}>To</span>
+        </span>
+      </span>
+
       <button
         type="submit"
         className="button-primary btn-search"
@@ -64,5 +86,6 @@ export default function SearchBar({ onSearch }) {
         Search
       </button>
     </form>
+    </>
   );
 }

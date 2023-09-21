@@ -7,7 +7,7 @@ export default function HomePage() {
   return (
     <main className={css.mainContainer}>
       <Logo/>
-      <img src={carImage} className={css.carImage} alt="Car" />
+      <img src={carImage} className={css.carImage} alt="Car" data-aos="fade-down-left"   data-aos-offset="300" data-aos-duration="1500"/>
       <h1 className={css.mainTitle}>Luxury Car Rentals</h1>
       <h2 className={css.subTitle}>Find the perfect car for rent today</h2>
       <span className={css.decorLine}></span>

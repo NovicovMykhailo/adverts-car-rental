@@ -21,11 +21,10 @@
 
 .carImage {
   position: absolute;
-  top: 45%;
+  top: 120px;
   right: 0;
 
   width: 60%;
-  transform: translateY(-50%);
   filter: drop-shadow(0 6mm 4mm rgb(54, 54, 55));
 }
 .mainTitle {
