@@ -21,8 +21,13 @@ export const adToFavs = async (id, status) => {
 
 // get all favs
 export const getFavotites = async (page = 1) => {
-  const res = await axios.get(`?favs=true&page=${page}&limit=8`);
-  return res.data;
+  let res = null;
+  try {
+    res = await axios.get(`?favs=true&page=${page}&limit=8`);
+  } catch (error) {
+    res = [];
+  }
+  return res.data ? res.data : [];
 };
 
 //get all

@@ -7,6 +7,6 @@ export default function NotFoundComponent({message}) {
 }
 
 const styles = {
-  container: { display: 'flex', alighItems: 'center', justifyContent: 'center' },
-  text: {fontFamily: "inherit", color: "gray"}
+  container: { display: 'flex', alighItems: 'center', justifyContent: 'center', height: '100vh'},
+  text: {fontFamily: "inherit", color: "gray", paddingTop: "10vh"}
 };

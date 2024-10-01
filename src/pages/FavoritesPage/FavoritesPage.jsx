@@ -21,36 +21,21 @@ export default function FavoritesPage() {
   //initialize
   useEffect(() => {
     (async () => {
-      try {
-        setStatus('pending');
-        const res = await API.getFavotites();
-        res && setFavCards(res);
-        res && setStatus('fullfield');
-        
-      } catch (error) {
-        setStatus('fullfield');
-        setFavCards([]);
-      }
-  
+      setStatus('pending');
+      const res = await API.getFavotites();
+      res && setFavCards(res);
+      res && setStatus('fullfield');
     })();
-    
   }, []);
 
   //refresh
   useEffect(() => {
     (async () => {
-      try {
-        setStatus('pending');
-        const res = await API.getFavotites();
-        res && setFavCards(res);
-        res && res.length < 8 ? setShowLoadrMore(false) : setShowLoadrMore(true) ; 
-        res && setStatus('fullfield');
-        
-      } catch (error) {
-        setStatus('fullfield');
-        setFavCards([]);
-      }
-      
+      setStatus('pending');
+      const res = await API.getFavotites();
+      res && setFavCards(res);
+      res && res.length < 8 ? setShowLoadrMore(false) : setShowLoadrMore(true);
+      res && setStatus('fullfield');
     })();
   }, [likeChangd]);
 
@@ -71,24 +56,22 @@ export default function FavoritesPage() {
     setAdvert(advert);
   };
 
- 
-
   return (
     <>
       <h2 className={css.favTitle}>Favorites</h2>
       {status === 'fullfield' ? (
         <ul className={css.cardList}>
-          {favCards &&  (        sortingByPrice(favCards).map(favCard => (
+          {favCards &&
+            sortingByPrice(favCards).map(favCard => (
               <AdvertCard advert={favCard} key={favCard.id} openModal={openModal} isChanged={() => setLikeChanged(prev => !prev)} />
-            )))}
- 
+            ))}
         </ul>
       ) : (
         <div className={css.margin}>
           <Skeleton />
         </div>
       )}
-      {favCards && favCards.length === 0  && <NotFoundComponent message={'Please add some cars to favorites'}/>}
+      {favCards && favCards.length === 0 && <NotFoundComponent message={'Please add some cars to favorites'} />}
       {showModal && (
         <Modal onClose={() => setShowModal(prev => !prev)} active={showModal}>
           <ModalCard advert={advert} closeModal={() => setShowModal(prev => !prev)} />
