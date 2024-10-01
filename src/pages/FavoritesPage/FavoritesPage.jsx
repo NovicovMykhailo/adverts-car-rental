@@ -21,21 +21,36 @@ export default function FavoritesPage() {
   //initialize
   useEffect(() => {
     (async () => {
-      setStatus('pending');
-      const res = await API.getFavotites();
-      res && setFavCards(res);
-      res && setStatus('fullfield');
+      try {
+        setStatus('pending');
+        const res = await API.getFavotites();
+        res && setFavCards(res);
+        res && setStatus('fullfield');
+        
+      } catch (error) {
+        setStatus('fullfield');
+        setFavCards([]);
+      }
+  
     })();
+    
   }, []);
 
   //refresh
   useEffect(() => {
     (async () => {
-      setStatus('pending');
+      try {
+        setStatus('pending');
         const res = await API.getFavotites();
         res && setFavCards(res);
         res && res.length < 8 ? setShowLoadrMore(false) : setShowLoadrMore(true) ; 
         res && setStatus('fullfield');
+        
+      } catch (error) {
+        setStatus('fullfield');
+        setFavCards([]);
+      }
+      
     })();
   }, [likeChangd]);
 
@@ -56,6 +71,8 @@ export default function FavoritesPage() {
     setAdvert(advert);
   };
 
+ 
+
   return (
     <>
       <h2 className={css.favTitle}>Favorites</h2>
@@ -71,7 +88,7 @@ export default function FavoritesPage() {
           <Skeleton />
         </div>
       )}
-      {favCards && favCards.length === 0 && <NotFoundComponent message={'Please add some cars to favorites'}/>}
+      {favCards && favCards.length === 0  && <NotFoundComponent message={'Please add some cars to favorites'}/>}
       {showModal && (
         <Modal onClose={() => setShowModal(prev => !prev)} active={showModal}>
           <ModalCard advert={advert} closeModal={() => setShowModal(prev => !prev)} />
